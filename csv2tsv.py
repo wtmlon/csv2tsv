@@ -14,6 +14,8 @@ if __name__ == '__main__':
         print(name, counsel[name])
         pd_name = pd.read_csv(counsel[name])
         pd_name = pd.DataFrame(pd_name, columns=['questionTitle', 'answerText'])
+        pd_name = pd_name.replace(r'([?.,!"])', r' \1', regex=True)
+        pd_name.columns=['0.0 question', ' 1.0 answer']
         print(pd_name)
         pd_name.to_csv('./Data/'+name+'.tsv', sep='\t', index=False)
 
@@ -21,5 +23,8 @@ if __name__ == '__main__':
         print(name, scrap[name])
         pd_name = pd.read_csv(scrap[name])
         pd_name = pd.DataFrame(pd_name, columns=['title', 'response'])
+        pd_name = pd_name.replace(r'([?.,!"])', r' \1', regex=True)
+        pd_name.columns=['0.0 question', '  1.0 answer']
         print(pd_name)
         pd_name.to_csv('./Data/'+name+'.tsv', sep='\t', index=False)
+ 
