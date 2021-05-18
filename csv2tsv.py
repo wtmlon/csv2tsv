@@ -3,8 +3,8 @@ import string
 import re
 
 def process(x):
+    x = x.replace('"','')
     x = re.sub(r'([?.,!])$',r' \1', x)
-    x = re.sub(r'["“”]',r'', x)
     return x
         
 if __name__ == '__main__':
@@ -27,7 +27,7 @@ if __name__ == '__main__':
         pd_name['questionTitle'] = pd_name['questionTitle'].apply(process)  #对Seies每行aly
         pd_name['answerText'] = pd_name['answerText'].apply(process)
         print(pd_name)
-        pd_name.to_csv('./Data/'+name+'.tsv', sep='\t', index=False)
+        pd_name.to_csv('./Data/'+name+'.tsv', sep='\t', index=False,quoting=0)
 
     for name in scrap:
         print(name, scrap[name])
@@ -39,5 +39,5 @@ if __name__ == '__main__':
         pd_name['title'] = pd_name['title'].apply(process)
         pd_name['response'] = pd_name['response'].apply(process)
         print(pd_name)
-        pd_name.to_csv('./Data/'+name+'.tsv', sep='\t', index=False)
+        pd_name.to_csv('./Data/'+name+'.tsv', sep='\t', index=False,quoting=0)
  
